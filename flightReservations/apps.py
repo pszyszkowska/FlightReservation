@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class FlightSearchConfig(AppConfig):
+class FlightReservationsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'flightSearch'
+    name = 'flightReservations'

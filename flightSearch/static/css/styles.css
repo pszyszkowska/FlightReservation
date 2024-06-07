@@ -1,0 +1,37 @@
+
+.search-form {
+    display: flex;
+    gap: 10px;
+}
+
+.search-form option {
+    width: 200px;
+}
+
+.search-form label {
+    align-content: center;
+    text-align: center;
+    width: 130px;
+}
+
+.table {
+    width: 100%;
+    border: 1px solid #b3adad;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+.table th {
+    border: 1px solid #b3adad;
+    padding: 5px;
+    background: #f0f0f0;
+    color: #313030;
+}
+
+.table td {
+    border: 1px solid #b3adad;
+    text-align: center;
+    padding: 5px;
+    background: #ffffff;
+    color: #313030;
+}

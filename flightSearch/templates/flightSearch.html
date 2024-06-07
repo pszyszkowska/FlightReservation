@@ -1,0 +1,39 @@
+{% extends  "base.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <h2>Flight type</h2>
+        <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="pill" href="#roundTrip">Round trip</a></li>
+            <li><a data-toggle="tab" href="#oneWay">One way</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="roundTrip" class="tab-pane fade in active">
+                <h3>Round trip</h3>
+                <form action={% url "flightSearchResult" %} method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="flightType" value="roundTrip">
+                    <div class="search-form">
+                        {{ formRoundTrip.as_table }}
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+            <div id="oneWay" class="tab-pane fade">
+                <h3>One way</h3>
+                <form action={% url "flightSearchResult" %} method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="flightType" value="oneWay">
+                    <div class="search-form">
+                        {{ formOneWay.as_table }}
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

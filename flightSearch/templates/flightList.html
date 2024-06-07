@@ -1,0 +1,137 @@
+{% extends  "base.html" %}
+
+{% block content %}
+    {% if flightType == 'RoundTrip' %}
+        <form action="{% url 'createReservation' %}" method="POST">
+            {% csrf_token %}
+            <div class="container">
+                <h2>Outbounds</h2>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Departure</th>
+                        <th>Arrival</th>
+                        <th>Departure date</th>
+                        <th>Cabin class</th>
+                        <th>Flight number</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for flight in outbounds %}
+                        <tr>
+                            <td>{{ flight.departureAirport }}</td>
+                            <td>{{ flight.arrivalAirport }}</td>
+                            <td>{{ flight.departureDate }}</td>
+                            <td>{{ flight.cabin }}</td>
+                            <td>{{ flight.flightNumber }}</td>
+                            <td><input type="radio" name="outbound" value="{{ flight.flightNumber }}"/></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="container">
+                <h2>Inbounds</h2>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Departure</th>
+                        <th>Arrival</th>
+                        <th>Departure date</th>
+                        <th>Cabin class</th>
+                        <th>Flight number</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for flight in inbounds %}
+                        <tr>
+                            <td>{{ flight.departureAirport }}</td>
+                            <td>{{ flight.arrivalAirport }}</td>
+                            <td>{{ flight.departureDate }}</td>
+                            <td>{{ flight.cabin }}</td>
+                            <td>{{ flight.flightNumber }}</td>
+                            <td><input type="radio" name="inbound" value="{{ flight.flightNumber }}"></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#confirmModal">Create
+                reservation
+            </button>
+            <div id="confirmModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Confirm</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do You want to create reservation?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-error" data-dismiss="modal">No</button>
+                            <button type="submit" class="btn btn-info">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    {% else %}
+        <form action="{% url 'createReservation' %}" method="POST">
+            {% csrf_token %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                    <th>Departure date</th>
+                    <th>Cabin class</th>
+                    <th>Flight number</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for flight in flightList %}
+                    <tr>
+                        <td>{{ flight.departureAirport }}</td>
+                        <td>{{ flight.arrivalAirport }}</td>
+                        <td>{{ flight.departureDate }}</td>
+                        <td>{{ flight.cabin }}</td>
+                        <td>{{ flight.flightNumber }}</td>
+                        <td><input type="radio" name="outbound" value="{{ flight.flightNumber }}"></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#confirmModal">Create
+                reservation
+            </button>
+            <div id="confirmModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Confirm</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do You want to create reservation?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-error" data-dismiss="modal">No</button>
+                            <button type="submit" class="btn btn-info">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+
+{% endblock %}

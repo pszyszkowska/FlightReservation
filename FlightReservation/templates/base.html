@@ -9,24 +9,32 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
 </head>
 <body>
 <div class="container-fluid">
     {% block navbar %}
-   <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href={% url 'flightSearch' %}>Flight reservations</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href={% url 'flightSearch' %}>Flight search</a></li>
-      <li><a href={% url 'allFlights' %}>All flights</a></li>
-    </ul>
-  </div>
-</nav>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href={% url 'flightSearch' %}>Flight reservations</a>
+                </div>
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="active"><a href={% url 'flightSearch' %}>Flight search</a></li>
+                    <li><a href={% url 'allFlights' %}>All flights</a></li>
+                    <li><a href={% url 'register' %}>Register</a></li>
+                    <li>
+                        <a data-toggle="modal" data-target="#loginModal">
+                            Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     {% endblock %}
+
     <div class="container">
         <div class="row">
             <div class="col">
@@ -39,5 +47,44 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="loginModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Login</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="uname">Username:</label>
+                        <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password"
+                               name="pswd" required>
+                    </div>
+
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
+
 </html>

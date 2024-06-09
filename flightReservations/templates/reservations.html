@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container">
+        <h2>Your reservations</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Departure date</th>
+                <th>Cabin class</th>
+                <th>Flight number</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for flight in reservations %}
+                <tr>
+                    <td>{{ flight.departureAirport }}</td>
+                    <td>{{ flight.arrivalAirport }}</td>
+                    <td>{{ flight.departureDate }}</td>
+                    <td>{{ flight.cabin }}</td>
+                    <td>{{ flight.flightNumber }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -11,17 +11,6 @@ class FlightSearchResultView(generic.DetailView):
     template_name = 'flightSearchResult.html'
 
 
-def createReservation(request):
-    global resp
-    if request.method == 'POST':
-        if 'inbound' in request.POST:
-            resp = "Outbound: {outbound} Inbound: {inbound}".format(outbound=request.POST['outbound'],
-                                                                    inbound=request.POST['inbound'])
-        else:
-            resp = "Outbound: {outbound}".format(outbound=request.POST['outbound'])
-    return HttpResponse(resp)
-
-
 def search(request):
     template_name = 'flightList.html'
     if request.method == "POST":

@@ -1,7 +1,15 @@
 {% extends  "base.html" %}
 
 {% block content %}
+    {% if messages %}
 
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    {% endif %}
     <div class="container">
         <h2>Flight type</h2>
         <ul class="nav nav-pills">
@@ -35,5 +43,11 @@
         </div>
     </div>
 
-
+    <script>
+        window.setTimeout(function () {
+            $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+            });
+        }, 4000);
+    </script>
 {% endblock %}

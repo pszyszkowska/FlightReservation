@@ -2,9 +2,9 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <form method="POST" class="form-group">
+    <form class="form-with-validation" method="POST" action={% url 'register' %}>
         {% csrf_token %}
-        {% crispy form %}
+        {{ form }}
         <button type="submit" class="btn btn-success">Register</button>
     </form>
 {% endblock %}

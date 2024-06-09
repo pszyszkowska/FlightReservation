@@ -4,6 +4,8 @@
     {% if flightType == 'RoundTrip' %}
         <form action="{% url 'createReservation' %}" method="POST">
             {% csrf_token %}
+            <input type="hidden" value="{{ user }}" name="user">
+            <input type="hidden" value="RoundTrip" name="tripType">
             <div class="container">
                 <h2>Outbounds</h2>
                 <table class="table">
@@ -59,9 +61,15 @@
                     </tbody>
                 </table>
             </div>
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#confirmModal">Create
-                reservation
-            </button>
+            {% if user.is_authenticated %}
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#confirmModal">Create
+                    reservation
+                </button>
+            {% else %}
+                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top"
+                        title="You need to be logged in to create reservation!" disabled> Create reservation
+                </button>
+            {% endif %}
             <div id="confirmModal" class="modal fade" role="dialog">
                 <div class="modal-dialog modal-sm">
 
@@ -85,6 +93,8 @@
     {% else %}
         <form action="{% url 'createReservation' %}" method="POST">
             {% csrf_token %}
+            <input type="hidden" value="{{ user }}" name="user">
+            <input type="hidden" value="OneWay" name="tripType">
             <table class="table">
                 <thead>
                 <tr>
@@ -109,9 +119,15 @@
                 {% endfor %}
                 </tbody>
             </table>
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#confirmModal">Create
-                reservation
-            </button>
+            {% if user.is_authenticated %}
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#confirmModal">Create
+                    reservation
+                </button>
+            {% else %}
+                <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top"
+                        title="You need to be logged in to create reservation!" disabled> Create reservation
+                </button>
+            {% endif %}
             <div id="confirmModal" class="modal fade" role="dialog">
                 <div class="modal-dialog modal-sm">
 

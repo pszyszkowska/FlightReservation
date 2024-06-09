@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     "flightSearch.apps.FlightSearchConfig",
     "flightReservations.apps.FlightReservationsConfig",
-    "registration.apps.RegistrationConfig"
+    "client.apps.ClientConfig"
 ]
 
 MIDDLEWARE = [
@@ -125,3 +125,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

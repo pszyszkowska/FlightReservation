@@ -2,51 +2,54 @@
 <html lang="en">
 <head>
     {% block title %}
-        <title>Flight reservations</title>
+    <title>Flight reservations</title>
     {% endblock %}
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
 </head>
 <body>
 <div class="container-fluid">
     {% block navbar %}
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href={% url 'flightSearch' %}>Flight reservations</a>
-                </div>
-                <ul class="nav navbar-nav mr-auto">
-                    <li class="active"><a href={% url 'flightSearch' %}>Flight search</a></li>
-                    <li><a href={% url 'allFlights' %}>All flights</a></li>
-                    {% if user.is_authenticated %}
-                        <li><a href={% url 'reservations' %}>Your reservations</a></li>
-                    {% endif %}
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    {% if user.is_authenticated %}
+    {% with request.resolver_match.url_name as url_name %}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav mr-auto">
+                <li class="{% if url_name == 'flightSearch' %}active-nav{% endif %}"><a href={% url 'flightSearch' %}><i class="fa fa-home"></i> Flight search</a></li>
+                <li class="{% if url_name == 'allFlights' %}active-nav{% endif %}"><a href={% url 'allFlights' %}><i class="fa fa-search"></i> All flights</a></li>
+                <li class="{% if url_name == 'about' %}active-nav{% endif %}"><a href={% url 'other:about' %}><i class="fa fa-pencil fa-fw"></i> About</a></li>
+                <li class="{% if url_name == 'contact' %}active-nav{% endif %}"><a href={% url 'other:contact' %}><i class="fa fa-envelope"></i> Contact</a></li>
+                <li class="{% if url_name == 'funfacts' %}active-nav{% endif %}"><a href={% url 'other:funfacts' %}><i class="fa fa-globe"></i> Fun facts</a></li>
+                {% if user.is_authenticated %}
+                <li class="{% if url_name == 'reservations' %}active-nav{% endif %}"><a href={% url 'reservations' %}><i class="fa fa-address-card-o"></i> Your reservations</a></li>
+                {% endif %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
 
-                        <form action={% url 'logout' %} method="POST" id="logout-form">
-                            {% csrf_token %}
-                        </form>
-                        <li><a>Logged as: {{ user }}</a></li>
-                        <li>
-                            <a href="javascript:{}" onclick="document.getElementById('logout-form').submit();"><span
-                                    class="glyphicon glyphicon-log-out"></span> Logout</a>
-                        </li>
-                    {% else %}
-                        <li><a href={% url 'register' %}><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a data-toggle="modal" data-target="#loginModal"><span
-                                class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
+                <form action={% url 'logout' %} method="POST" id="logout-form">
+                {% csrf_token %}
+                </form>
+                <li><a>Logged as: {{ user }}</a></li>
+                <li>
+                    <a href="javascript:{}" onclick="document.getElementById('logout-form').submit();"><span
+                            class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
+                {% else %}
+                <li class="{% if url_name == 'register' %}active-nav{% endif %}"><a href={% url 'register' %}><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a data-target="#loginModal" data-toggle="modal"><span
+                        class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    {% endwith %}
     {% endblock %}
 
     <div class="container">
@@ -54,7 +57,8 @@
             <div class="col">
             </div>
             <div class="col">
-                {% block content %}{% endblock %}
+                {% block content %}
+                {% endblock %}
             </div>
             <div class="col">
             </div>
@@ -67,40 +71,39 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form action={% url 'login' %} method="POST">
-                {% csrf_token %}
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Login</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+            {% csrf_token %}
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Login</h4>
+                <button class="close" data-dismiss="modal" type="button">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input class="form-control" id="username" name="username" placeholder="Enter username"
+                           required
+                           type="text">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input class="form-control" id="password" name="password" placeholder="Enter password"
+                           required type="password">
                 </div>
 
-                <!-- Modal body -->
-                <div class="modal-body">
 
-                    <div class="form-group">
-                        <label for="username">Username:</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter username"
-                               name="username"
-                               required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter password"
-                               name="password" required>
-                    </div>
+            </div>
 
-
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal" type="button">Close</button>
+                <button class="btn btn-primary" type="submit">Login</button>
+            </div>
             </form>
         </div>
     </div>
 </div>
 </body>
-
 </html>

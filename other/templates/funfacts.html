@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+
+<h2>Did you know that...?</h2>
+
+<button class="accordion-funfacts"> LIGHTNING WON’T AFFECT THE PLANE</button>
+<div class="panel-funfacts">
+    <p> It’s natural to be afraid to fly during a thunderstorm, but, rest assured, that a bolt of lightning would not
+        down your plane. Since technological advances in aviation engineering in 1963, no plane has crashed because of
+        lightning. Lightning strikes airplanes on a regular basis, without damaging the plane or even affecting the
+        flight. Modern planes are completely lightning-proof, with material and systems that won’t breakdown from
+        electric shocks. </p>
+</div>
+
+<button class="accordion-funfacts"> MOST CRASHES OCCUR AT TAKEOFF OR LANDING</button>
+<div class="panel-funfacts">
+    <p> Research shows that about 80% of plane crashes occur within the first three minutes of takeoff and the last
+        eight minutes before the plane lands. Aviation accidents are most likely to occur when the plane is on or near
+        the ground or near other aircraft. Staying vigilant in these time frames could improve your chances of survival
+        should anything happen. Take heart, however – the odds of getting into a plane crash are about one in 11
+        million. </p>
+</div>
+
+<button class="accordion-funfacts">THE WINGS DON’T MAKE THE PLANE FLY</button>
+<div class="panel-funfacts">
+    <p> The wings of an airplane certainly play a part in how the aircraft stays in the sky, but they aren’t the only
+        forces of flight. There are actually four forces that push the plane up, down, forward, or back – the lift,
+        thrust, drag, and weight. The bends you see at the ends of some wings are “winglets.” They serve to reduce
+        vortices of air that swirl above and below the wings. Winglets boost a plane’s performance by reducing
+        drag. </p>
+</div>
+
+<button class="accordion-funfacts">THEY AREN’T ONLY MADE OF ALUMINUM</button>
+<div class="panel-funfacts">
+    <p> Back in the day, all airplanes were made only from aluminum. Today, however, plane manufacturers mix fiberglass,
+        carbon fiber reinforced plastic, Kevlar, and titanium in the building of airplanes. Most planes still use
+        aluminum, which is strong yet lightweight. However, manufacturers also use other metals, such as titanium and
+        steel. One aircraft, the Boeing B787 Dreamliner, has a completely carbon fiber skin. </p>
+</div>
+
+<button class="accordion-funfacts">PLANES CAN LAST AROUND 30-35 YEARS</button>
+<div class="panel-funfacts">
+    <p> The aviation industry doesn’t retire jet airliners until the end of their lifespans, at about 30 to 35 years
+        depending on maintenance and wear and tear. In military and civilian fleets around the globe, some aircraft are
+        even older. With proper care and maintenance, the average jet airliner will operate just as well at the end of
+        its career as the beginning. </p>
+</div>
+
+<button class="accordion-funfacts">YOU’RE SAFEST IN THE BACK</button>
+<div class="panel-funfacts">
+    <p> Popular Mechanics reviewed commercial airplane crash data from 1971 to 2005, and their researchers found the
+        safest place to sit on a commercial plane is in the back of the airbus. Looking at the hard data, Popular
+        Mechanics found that the farther back you sit, the better your chances for survival in an accident. Passengers
+        in the back of the plane are about 40% more likely to survive than the rows in the front. Researchers came to
+        this conclusion after poring over hundreds of reports and calculating the average seating position of survivors
+        and fatalities in every single commercial crash in a 36-year period. </p>
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion-funfacts");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active-funfacts");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+
+</script>
+{% endblock %}

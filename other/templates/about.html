@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>About us</h2>
+
+<button class="accordion-about"> Scapha S.A.</button>
+<div class="panel-about">
+    <p> Scapha Airlines, legally incorporated as Polskie Linie Lotnicze Scapha S.A., is the minor carrier of Poland. It
+        is a founding member of IATA and remains one of the world's oldest airlines in operation. With a fleet of 15
+        aircraft as of 2023, Scapha Airlines is the 38th largest operator in Europe, serving 45 domestic and
+        international destinations across Europe, Asia and North America. The airline was founded on 12 March 1996 by
+        the Polish government as a self-governing limited liability corporation, and began operations on 1 January 1997.
+        The name “Scapha” was derived from the latin meaning “airplane”. </p>
+</div>
+
+<button class="accordion-about">Our fleet</button>
+<div class="panel-about">
+    <button class="accordion-about"> Boeing 777</button>
+    <div class="panel-about">
+        <p> The largest twin-engine jet, Boeing's 777 is also the world's most popular wide-body aircraft, surpassing
+            even the numbers of the venerable Boeing 747, with a total of 1657 delivered to February 2021. First to roll
+            out of the hanger was the 777-200, which entered service in 1995 yet it has stood the test of time, adapting
+            to state-of-the art upgrades such as Emirates first class suites and Air France's impressive La Premiere
+            first class on its 777-300ER, operating non-stop Paris to Beijing in pre-pandemic days.
+
+            Seating between 301 and 368 passengers in a 10-across economy class configuration, and with a range of 9700
+            to 15840 kilometres, it's been a natural choice for airlines looking for an aircraft to replace ageing 747s.
+
+            The latest version is the 777X, expected to make its commercial debut late in 2023. One of the unique
+            features of the 777X is a folding wingtip. The aircraft's wingspan of 71.75 metres offers improved fuel
+            performance but the extreme length creates a potential parking clash with neighbouring aircraft. To avoid
+            that problem, the wingtips can be flipped up, reducing the wingspan almost seven metres to that of the
+            777-300LR.
+
+            Emirates is the largest operator of the 777 with 147 currently in its fleet. United has 96 and Qatar Airways
+            has 81. Neither Qantas nor Virgin Australia currently operates the aircraft (Virgin used 777s on it US
+            routes prior to COVID-19) but Air New Zealand has 16, previously used on long-haul services and currently
+            parked awaiting the resumption of international travel. </p>
+    </div>
+
+    <button class="accordion-about">Airbus A330</button>
+    <div class="panel-about">
+        <p> This twin-engine widebody goes toe-to-toe with Airbus's Boeing's 777, and in terms of range, passenger load
+            and sales - 1506 A330s had been delivered worldwide by the end of November 2020 – the two are practically in
+            lockstep.
+
+            Curiously for an aircraft with a range of over 11,000 kilometres, French domestic carrier Air Inter was the
+            launch customer in January 1994, operating the aircraft between Paris and Marseilles. Since that time Airbus
+            has produced four variants, the A330-200, followed by the -300, -800 and -900.
+
+            The A330-900 carries 257 passengers and has a range of 15,090 kms. Other variants can carry as many as 440
+            passengers. Many flyers prefer its typical economy class configuration of 2-4-2 or 3-3-3, against the 3-4-3
+            setup often found aboard Boeing's 777.
+
+            Although the earlier A330s sold well, the A330-800 and -900, the so-called neo (new engine option) versions
+            have failed to live up expectations, facing headwinds against Boeing's Dreamliner and even Airbus' own A350.
+
+            The main market for the A330 is the Asia Pacific. US or Middle Eastern carriers lean towards Boeing's 777.
+            The exception is Delta Air Lines, which has 50 A330s, and not a single Boeing 777. Turkish Airlines is the
+            largest operator with 63 A330s, followed by China Eastern with 54 and China Southern with 37. Qantas is a
+            significant customer with 28 A330s in its fleet while Virgin Australia has three. </p>
+    </div>
+
+    <button class="accordion-about">Boeing 787</button>
+    <div class="panel-about">
+        <p> Since its much-awaited (and delayed) commercial debut in October 2011, the Boeing 787 has been a game
+            changer for the aircraft industry.
+
+            Constructed extensively from carbon fibre reinforced polymer, the 787's cabin tolerates higher pressure than
+            an all-metal fuselage, making for a more comfortable passenger experience. Windows are 65 per cent larger
+            than on a standard aircraft window, and the aircraft uses electrical power to control rudder, flaps and
+            elevators rather than the hydraulics used on traditional aircraft. At the end of 2020, Boeing had produced
+            992 787s, with more than 500 still on order.
+
+            Instead of being built in one factory from the ground up, Boeing subcontracted individual suppliers around
+            the globe to deliver subassemblies to Boeing's Everett, Washington factory for final assembly. Thus
+            Mitsubishi builds the wing in Japan, fuselage sections are built in Italy, wiring and passenger doors come
+            from France and software development happens in India.
+
+            Of the three variants of the 787 the mid-size 787-9 has the longest range, 13,950 km, and carries around 296
+            passengers. Other versions typically carry between 248 and 336 passengers. Enhanced passenger comfort plus
+            long range and improved fuel efficiency make it a favourite with airlines for long-haul routes such as
+            Shenzen, China to Zurich, Switzerland, and Dallas to Sydney.
+
+            Japan's ANA, the launch customer for the aircraft, has the largest fleet, currently with 74 and more on
+            order. United Airlines has 60 and Japan Airlines 49. Qantas has 10, used on its non-stop flights between
+            Perth and London. </p>
+    </div>
+</div>
+
+<button class="accordion-about">Why Us?</button>
+<div class="panel-about">
+    <p> -Direct flights around the world <br>
+        -Convenient flight schedules <br>
+        -The best airports <br>
+        -Comfortable, modern airplanes <br>
+        -Experienced, qualified crew <br>
+        -Carry-on baggage always included in the ticket price <br>
+        -Your favourite meal on board <br>
+    </p>
+</div>
+
+
+<script>
+var acc = document.getElementsByClassName("accordion-about");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active-about");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+
+</script>
+{% endblock %}

@@ -1,6 +1,5 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.apps import apps
+from django.utils.timezone import now
 from .models import Reservation
 from flightSearch.models import Flight
 
@@ -30,8 +29,10 @@ def createReservation(request):
 
 def fetchReservations(request):
     template_name = 'reservations.html'
+    today = now().date()
     reservations = Reservation.objects.filter(username=request.user)
     inbounds = Flight.objects.filter(flightNumber__in=reservations.values_list('inbound', flat=True))
     outbounds = Flight.objects.filter(flightNumber__in=reservations.values_list('outbound', flat=True))
     flights = inbounds | outbounds
-    return render(request, template_name, {'reservations': flights})
+
+    return render(request, template_name, {'reservations': flights, 'today':today})

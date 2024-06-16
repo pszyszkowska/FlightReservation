@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     "flightSearch.apps.FlightSearchConfig",
     "flightReservations.apps.FlightReservationsConfig",
-    "client.apps.ClientConfig"
+    "client.apps.ClientConfig",
+    "other.apps.OtherConfig"
 ]
 
 MIDDLEWARE = [
@@ -118,7 +119,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

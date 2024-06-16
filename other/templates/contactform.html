@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+    {% if messages %}
+
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
+<h3>Contact Form</h3>
+
+
+<div class="container-contactform">
+      <form action={% url 'other:submitted' %} method="POST" id="submitted-form">
+                {% csrf_token %}
+    <label for="mail">Mail</label>
+    <input type="text" id="Mail" name="mail" placeholder="Your mail..">
+
+    </select>
+
+    <label for="subject">Subject</label>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+<script>
+        window.setTimeout(function () {
+            $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+                window.location.href = "/flightSearch/"
+            });
+        }, 4000);
+    </script>
+{% endblock %}

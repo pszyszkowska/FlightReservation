@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+
+
+<h2>Contact</h2>
+
+<button class="accordion-contact">Contact form</button>
+<div class="panel-contact">
+    <span>Have a question? Please a form <a href="/other/contactform/">here</a></span>
+</div>
+<button class="accordion-contact">Address</button>
+<div class="panel-contact">
+    <p> 57/59 Jagiellonska Street, 03-301 Warsaw </p>
+</div>
+
+<button class="accordion-contact">Email/Phone details</button>
+<div class="panel-contact">
+    <p>
+        Call to our Contact Center: <br>
+        + 788 788 799 <br>
+        <br>
+        Our email address: <br>
+        contactcenter@scapha@gmail.com
+    </p>
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion-contact");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active-contact");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+
+</script>
+{% endblock %}

@@ -10,20 +10,24 @@ class FlightSearchFormRoundTrip(forms.Form):
     allAirports = Airport.objects.all()
     originIata = forms.ModelChoiceField(queryset=allAirports,
                                         required=True,
-                                        initial=allAirports.first()
+                                        initial=allAirports.first(),
+                                        label='Origin Airport',
+                                        widget=forms.Select(attrs={'class': 'airportselector'})
                                         )
 
     destinationIata = forms.ModelChoiceField(queryset=allAirports,
                                              required=True,
                                              empty_label='Select Destination',
-                                             label='Destination'
+                                             label='Destination',
+                                             widget=forms.Select(attrs={'class': 'airportselector'})
                                              )
 
     departureDate = forms.DateField(
         widget=forms.widgets.DateInput(
             attrs={
                 'type': 'date',
-                'min': datetime.date.today()
+                'min': datetime.date.today(),
+                'class': 'dateselector'
             }
         ),
         label='Departure Date'
@@ -33,7 +37,8 @@ class FlightSearchFormRoundTrip(forms.Form):
         widget=forms.widgets.DateInput(
             attrs={
                 'type': 'date',
-                'min': datetime.date.today()
+                'min': datetime.date.today(),
+                'class': 'dateselector'
             }
         ),
         label='Arrival Date'
@@ -46,22 +51,26 @@ class FlightSearchFormOneWay(forms.Form):
     originIata = forms.ModelChoiceField(
         queryset=Airport.objects.all(),
         required=True,
-        initial=Airport.objects.first()
+        initial=Airport.objects.first(),
+        label = 'Origin Airport',
+        widget=forms.Select(attrs={'class': 'airportselector'})
     )
 
     destinationIata = forms.ModelChoiceField(
         queryset=allAirports,
         required=True,
         empty_label='Select Destination',
-        label='Destination'
+        label='Destination',
+        widget=forms.Select(attrs={'class': 'airportselector'})
     )
 
     departureDate = forms.DateField(
         widget=forms.widgets.DateInput(
             attrs={
                 'type': 'date',
-                'min': datetime.date.today()
+                'min': datetime.date.today(),
+                'class': 'dateselector'
             }
         ),
-        label='Departure Date'
+        label='Departure Date',
     )

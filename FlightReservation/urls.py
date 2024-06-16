@@ -28,4 +28,5 @@ urlpatterns = [
     path("logout/", client.clientLogout, name="logout"),
     path("admin/", admin.site.urls),
     path("", RedirectView.as_view(pattern_name='flightSearch', permanent=False)),
+    path("other/", include(("other.urls",'other'), namespace='other')),
 ]

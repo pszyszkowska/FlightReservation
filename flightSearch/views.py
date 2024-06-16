@@ -4,6 +4,7 @@ from .models import Flight
 from django.views import generic
 from .forms import FlightSearchFormRoundTrip, FlightSearchFormOneWay
 import datetime
+from django.utils.timezone import now
 
 
 class FlightSearchResultView(generic.DetailView):
@@ -58,12 +59,11 @@ def search(request):
                 return render(request, template_name, {'flightList': flightList, 'flightType': 'OneWay'})
 
 
-class AllFlights(generic.ListView):
+def allFlights(request):
     template_name = 'allFlights.html'
-    context_object_name = 'flightList'
-
-    def get_queryset(self):
-        return Flight.objects.all().order_by('departureDate')
+    today = now().date()
+    flightlist = Flight.objects.all().order_by('departureDate')
+    return render(request, template_name, {'flightList': flightlist, 'today': today})
 
 
 def flightSearch(request):

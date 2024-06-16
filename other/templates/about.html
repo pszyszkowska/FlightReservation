@@ -3,8 +3,8 @@
 
 <h2>About us</h2>
 
-<button class="accordion-about"> Scapha S.A.</button>
-<div class="panel-about">
+<button class="accordion-about" data-toggle="collapse" href="#aboutUs"> Scapha S.A.</button>
+<div class="collapse multi-collapse" id="aboutUs">
     <p> Scapha Airlines, legally incorporated as Polskie Linie Lotnicze Scapha S.A., is the minor carrier of Poland. It
         is a founding member of IATA and remains one of the world's oldest airlines in operation. With a fleet of 15
         aircraft as of 2023, Scapha Airlines is the 38th largest operator in Europe, serving 45 domestic and
@@ -13,10 +13,10 @@
         The name “Scapha” was derived from the latin meaning “airplane”. </p>
 </div>
 
-<button class="accordion-about">Our fleet</button>
-<div class="panel-about">
-    <button class="accordion-about"> Boeing 777</button>
-    <div class="panel-about">
+<button class="accordion-about" data-toggle="collapse" href="#ourFleet">Our fleet</button>
+<div class="collapse multi-collapse ourFleet" id="ourFleet">
+    <button class="accordion-about" data-toggle="collapse" href="#boeing777"> Boeing 777</button>
+    <div class="collapse multi-collapse" id="boeing777">
         <p> The largest twin-engine jet, Boeing's 777 is also the world's most popular wide-body aircraft, surpassing
             even the numbers of the venerable Boeing 747, with a total of 1657 delivered to February 2021. First to roll
             out of the hanger was the 777-200, which entered service in 1995 yet it has stood the test of time, adapting
@@ -38,8 +38,8 @@
             parked awaiting the resumption of international travel. </p>
     </div>
 
-    <button class="accordion-about">Airbus A330</button>
-    <div class="panel-about">
+    <button class="accordion-about" data-toggle="collapse" href="#airbusA330">Airbus A330</button>
+    <div class="collapse multi-collapse" id="airbusA330">
         <p> This twin-engine widebody goes toe-to-toe with Airbus's Boeing's 777, and in terms of range, passenger load
             and sales - 1506 A330s had been delivered worldwide by the end of November 2020 – the two are practically in
             lockstep.
@@ -61,8 +61,8 @@
             significant customer with 28 A330s in its fleet while Virgin Australia has three. </p>
     </div>
 
-    <button class="accordion-about">Boeing 787</button>
-    <div class="panel-about">
+    <button class="accordion-about" data-toggle="collapse" href="#boeing787">Boeing 787</button>
+    <div class="collapse multi-collapse" id="boeing787">
         <p> Since its much-awaited (and delayed) commercial debut in October 2011, the Boeing 787 has been a game
             changer for the aircraft industry.
 
@@ -88,8 +88,8 @@
     </div>
 </div>
 
-<button class="accordion-about">Why Us?</button>
-<div class="panel-about">
+<button class="accordion-about" data-toggle="collapse" href="#whyUs">Why Us?</button>
+<div class="collapse multi-collapse" id="whyUs">
     <p> -Direct flights around the world <br>
         -Convenient flight schedules <br>
         -The best airports <br>
@@ -102,20 +102,25 @@
 
 
 <script>
-var acc = document.getElementsByClassName("accordion-about");
-var i;
+function expandOrCallapse() {
+        var acc = document.getElementsByClassName("accordion-about");
+        var i;
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active-about");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  });
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active-about");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+              panel.style.maxHeight = null;
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+          });
+        }
 }
 
+
+
 </script>
+
 {% endblock %}
